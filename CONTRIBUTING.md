@@ -11,6 +11,16 @@ Thanks for helping improve Fullstack Skills.
 - Include source and license details for all third-party material.
 - Run `bash scripts/validate-skills.sh`.
 
+## Validator setup
+
+The validator requires Python 3 and PyYAML. Install its pinned dependency with:
+
+```bash
+python3 -m pip install PyYAML==6.0.2
+```
+
+Run its tests with `python3 -m unittest discover -s tests -v`.
+
 ## Adding a skill
 
 Create `skills/<skill-name>/SKILL.md`. Use lowercase kebab-case for the directory and frontmatter name.
