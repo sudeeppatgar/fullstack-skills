@@ -1,6 +1,6 @@
 # Third-party skill attribution and licensing
 
-No third-party sources have currently been documented or verified for the seven existing skills. This does not establish whether third-party material is present or whether the skills are original.
+No third-party sources have currently been documented or verified for the skills in this repository. This does not establish whether third-party material is present or whether the skills are original.
 
 If third-party content is introduced, record the following for each affected skill before contributing it:
 
