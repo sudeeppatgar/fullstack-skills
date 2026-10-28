@@ -82,6 +82,6 @@ The validator checks selected frontmatter and file-structure constraints; passin
 
 ## License and security
 
-Original repository content is offered under the [MIT License](LICENSE). Third-party material remains subject to its own terms and notices; see [`docs/THIRD_PARTY_SKILLS.md`](docs/THIRD_PARTY_SKILLS.md).
+The repository includes an [MIT License](LICENSE). If third-party content is introduced, its own license and notices apply; see [`docs/THIRD_PARTY_SKILLS.md`](docs/THIRD_PARTY_SKILLS.md) for the register.
 
 For security concerns, follow [SECURITY.md](SECURITY.md) and use the repository's [private vulnerability reporting](https://github.com/sudeeppatgar/fullstack-skills/security/advisories/new) feature. Do not disclose sensitive details in a public issue.
