@@ -9,6 +9,21 @@ VALIDATOR = ROOT / "scripts" / "validate-skills.sh"
 
 
 class ValidateSkillsTests(unittest.TestCase):
+    def validate_tree(self, skills):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            skills_dir = pathlib.Path(temporary_directory) / "skills"
+            for name, content in skills.items():
+                skill_dir = skills_dir / name
+                skill_dir.mkdir(parents=True)
+                if content is not None:
+                    (skill_dir / "SKILL.md").write_text(content, encoding="utf-8")
+            return subprocess.run(
+                ["bash", str(VALIDATOR), str(skills_dir)],
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+
     def validate(self, file_content, skill_dir="example-skill"):
         with tempfile.TemporaryDirectory() as temporary_directory:
             skills_dir = pathlib.Path(temporary_directory) / "skills"
@@ -21,6 +36,39 @@ class ValidateSkillsTests(unittest.TestCase):
                 capture_output=True,
                 check=False,
             )
+
+    def test_all_skill_directories_with_valid_skill_files_pass(self):
+        content = "---\nname: {name}\ndescription: A useful skill.\n---\n# Example\n"
+        result = self.validate_tree(
+            {
+                "first-skill": content.format(name="first-skill"),
+                "second-skill": content.format(name="second-skill"),
+            }
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("passed for 2 skill(s)", result.stdout)
+
+    def test_one_directory_missing_skill_file_fails(self):
+        valid_content = "---\nname: valid-skill\ndescription: Valid.\n---\n# Valid\n"
+        result = self.validate_tree(
+            {"valid-skill": valid_content, "missing-skill": None}
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Required regular file is missing", result.stderr)
+        self.assertIn("missing-skill/SKILL.md", result.stderr)
+
+    def test_multiple_directories_missing_skill_file_are_reported(self):
+        valid_content = "---\nname: valid-skill\ndescription: Valid.\n---\n# Valid\n"
+        result = self.validate_tree(
+            {
+                "valid-skill": valid_content,
+                "missing-one": None,
+                "missing-two": None,
+            }
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("missing-one/SKILL.md", result.stderr)
+        self.assertIn("missing-two/SKILL.md", result.stderr)
 
     def test_valid_metadata_passes(self):
         result = self.validate(
