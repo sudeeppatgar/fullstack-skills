@@ -8,7 +8,7 @@ Thanks for helping improve Fullstack Skills.
 - Keep skills focused and avoid duplicating shared guidance.
 - Use practical, framework-aware instructions.
 - Do not include secrets, proprietary code, or machine-specific paths.
-- Include source and license details for all third-party material.
+- For any third-party content, record its source, applicable license, required attribution, and modifications in [`docs/THIRD_PARTY_SKILLS.md`](docs/THIRD_PARTY_SKILLS.md).
 - Run `bash scripts/validate-skills.sh`.
 
 ## Validator setup
@@ -34,4 +34,4 @@ Each skill should say:
 
 ## Third-party content
 
-Do not copy a skill until you have reviewed its license and attribution requirements. Keep original notices intact and document material modifications. If terms are unclear, link to the source rather than redistributing it.
+Do not copy third-party content until you have reviewed its license and attribution requirements. Keep required notices intact and record the source, license, attribution, and modifications in [`docs/THIRD_PARTY_SKILLS.md`](docs/THIRD_PARTY_SKILLS.md). If terms are unclear, link to the source rather than redistributing it.
