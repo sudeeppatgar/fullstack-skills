@@ -7,7 +7,7 @@ description: Use when selecting, writing, debugging, or reviewing tests and qual
 
 ## Scope
 
-Own test strategy and verification across layers: choose the smallest test that provides trustworthy evidence, add broader coverage when a boundary or critical user journey requires it, diagnose unreliable tests, and connect checks to the repository's CI workflow. Domain implementation remains with the relevant skill, such as [react-typescript](../react-typescript/SKILL.md), [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), or [database-prisma](../database-prisma/SKILL.md). For review findings on a proposed diff, use [code-review](../code-review/SKILL.md).
+Own test strategy and verification across layers: choose the smallest test that provides trustworthy evidence, add broader coverage when a boundary or critical user journey requires it, diagnose unreliable tests, and connect checks to the repository's CI workflow. Domain implementation remains with the relevant skill, such as [react-typescript](../react-typescript/SKILL.md), [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), or [database-prisma](../database-prisma/SKILL.md). For API contract decisions that shape contract tests, use [rest-api-design](../rest-api-design/SKILL.md); for review findings on a proposed diff, use [code-review](../code-review/SKILL.md).
 
 ## Inspect the existing test system
 
