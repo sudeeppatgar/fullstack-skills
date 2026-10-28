@@ -27,9 +27,10 @@ Create `skills/<skill-name>/SKILL.md`. Every immediate directory under `skills/`
 
 Each skill should say:
 - what it helps with;
-- when to use it;
+- its scope, when to use it, and when to hand work to a related skill;
 - what workflow to follow;
-- how to verify results;
+- useful examples or decision criteria where they improve practical use;
+- how to verify results and what completion looks like;
 - what it does not install or guarantee.
 
 ## Third-party content
