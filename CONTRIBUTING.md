@@ -23,7 +23,7 @@ Run its tests with `python3 -m unittest discover -s tests -v`.
 
 ## Adding a skill
 
-Create `skills/<skill-name>/SKILL.md`. Use lowercase kebab-case for the directory and frontmatter name.
+Create `skills/<skill-name>/SKILL.md`. Every immediate directory under `skills/` must contain a regular `SKILL.md` file. Use lowercase kebab-case for the directory and frontmatter name.
 
 Each skill should say:
 - what it helps with;

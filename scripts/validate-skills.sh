@@ -16,8 +16,17 @@ fi
 
 errors=0
 count=0
+directory_count=0
 
-while IFS= read -r -d '' file; do
+while IFS= read -r -d '' skill_dir; do
+  directory_count=$((directory_count + 1))
+  file="$skill_dir/SKILL.md"
+  if [[ ! -f "$file" || -L "$file" ]]; then
+    printf 'ERROR: Required regular file is missing: %s\n' "$file" >&2
+    errors=$((errors + 1))
+    continue
+  fi
+
   count=$((count + 1))
   if python3 - "$file" <<'PY'
 import pathlib
@@ -97,10 +106,10 @@ PY
   else
     errors=$((errors + 1))
   fi
-done < <(find "$SKILLS_DIR" -mindepth 2 -maxdepth 2 -type f -name SKILL.md -print0)
+done < <(find "$SKILLS_DIR" -mindepth 1 -maxdepth 1 -type d -print0)
 
-if [[ "$count" -eq 0 ]]; then
-  printf 'ERROR: No skills/*/SKILL.md files found under %s\n' "$SKILLS_DIR" >&2
+if [[ "$directory_count" -eq 0 ]]; then
+  printf 'ERROR: No skill directories found under %s\n' "$SKILLS_DIR" >&2
   exit 1
 fi
 
