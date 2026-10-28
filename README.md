@@ -1,209 +1,87 @@
 # Fullstack Skills
 
-A curated, modular, multi-agent collection of AI skills for full-stack software development.
+Reusable [Agent Skills](https://agentskills.io/) for AI coding agents working on full-stack software projects. Each skill is a focused `SKILL.md` with task-specific guidance that an agent can load when relevant; it does not install tools, dependencies, or services.
 
-Use focused, reusable skills to help AI coding agents understand project conventions, implement features, test code, review security, and follow reliable development workflows.
+This repository currently contains seven starter skills. They offer practical workflow guidance, not exhaustive coverage or a guarantee that generated changes are correct. Review skill instructions and agent output as you would other code.
 
-**Status:** Early scaffold. The included skills provide starter guidance and have not all been independently validated in production.
+## Skills
 
-## Goals
+| Skill | Use it for |
+| --- | --- |
+| [`fullstack-core`](skills/fullstack-core/SKILL.md) | Repository orientation, planning, cross-layer implementation, debugging, and delivery checks. |
+| [`react-typescript`](skills/react-typescript/SKILL.md) | Building, debugging, refactoring, and testing React + TypeScript interfaces. |
+| [`node-api`](skills/node-api/SKILL.md) | Node.js services and REST APIs, including validation, authentication, and error handling. |
+| [`database-prisma`](skills/database-prisma/SKILL.md) | Database design, Prisma schemas, migrations, queries, and transactions. |
+| [`testing-quality`](skills/testing-quality/SKILL.md) | Test planning, regression investigation, feature validation, and coverage review. |
+| [`security-review`](skills/security-review/SKILL.md) | Defensive review of application security risks and configuration. |
+| [`docker-devops`](skills/docker-devops/SKILL.md) | Docker, Compose, CI, environment configuration, and deployment reliability. |
 
-- Support multiple AI coding agents through a shared skill collection.
-- Maintain one source of truth for each skill.
-- Provide focused guidance for common full-stack development tasks.
-- Support original skills and carefully reviewed third-party contributions.
-- Maintain clear provenance, licensing, validation, and contribution standards.
-- Cover React, TypeScript, Node.js, APIs, databases, testing, security, and DevOps.
+## Compatibility
 
-## Supported AI Agents
+Skills use the open Agent Skills folder format: a directory containing `SKILL.md` with `name` and `description` metadata and Markdown instructions. The format is supported by a growing range of products, but format support alone does not verify a particular skill's installation or activation in an agent.
 
-This repository uses the Agent Skills format, with installation handled by the `skills` CLI.
+The installation test in this repository verified all seven skills copied into an isolated project's OpenCode directory (`.agents/skills/`). Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
 
-The CLI supports multiple coding agents, and the available integrations depend on the installed CLI version.
+## Install
 
-Examples of agents you may be able to target include:
+Prerequisites: Node.js/npm for `npx`, and network access to GitHub. Run these commands from the project directory where you want project-local skills, or add `--global` for user-level installation.
 
-- OpenCode
-- Claude Code
-- OpenAI Codex
-- Cursor
-- Other agents supported by the CLI
-
-**Compatibility is not the same as testing.** Agent-specific installation and skill discovery should be verified before claiming that a particular integration has been tested.
-
-## Installation
-
-### Install all discovered skills
-
-Install globally for all agents supported by your installed CLI:
-
-```bash
-npx skills add sudeeppatgar/fullstack-skills \
-  --skill '*' \
-  --global \
-  --agent '*'
-```
-
-Review the CLI's confirmation prompts before proceeding.
-
-### Preview available skills
+Preview the repository's available skills without installing:
 
 ```bash
 npx skills add sudeeppatgar/fullstack-skills --list
 ```
 
-### Install for a specific agent
-
-For example, to target OpenCode:
+Install all seven skills for OpenCode in the current project:
 
 ```bash
-npx skills add sudeeppatgar/fullstack-skills \
-  --skill '*' \
-  --global \
-  --agent opencode
+npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode
 ```
 
-Other agents can be targeted by substituting an agent identifier supported by your installed CLI.
-
-### Verify installation
+Install one selected skill instead:
 
 ```bash
-npx skills list --global
+npx skills add sudeeppatgar/fullstack-skills --skill react-typescript --agent opencode
 ```
 
-To filter the list for a specific agent:
+To install globally for the selected agent, include `--global` (or `-g`):
 
 ```bash
-npx skills list --global --agent opencode
+npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode --global
 ```
 
-Check the installed CLI's help if an option or agent identifier is unsupported:
+The command may prompt for confirmation; inspect the target and overwrite summary before approving. Replace `opencode` only with an agent identifier supported by your installed CLI. `--agent '*'` targets every agent recognized by the CLI; it does not guarantee that all such agents can use every skill.
+
+### Verify and manage
+
+List project-local skills, optionally filtering for an agent:
 
 ```bash
-npx skills add --help
-npx skills list --help
+npx skills list --agent opencode
 ```
 
-Installation requirements and skill discovery behavior may differ across agents and CLI versions. Test installation in a disposable environment before relying on the collection in a production workflow.
+For global installs, add `--global` to `list`. To update installed skills, run `npx skills update` from the project (or `npx skills update --global` for global skills). Remove selected project skills with `npx skills remove react-typescript`; add `--global` to remove a global install. These are the management commands shown by the CLI help; check that output for current details with `npx skills --help`.
 
-## Included Skills
+After installation, check the target directory shown by the CLI (`.agents/skills/` for the verified OpenCode project install) and confirm your agent discovers or activates the skill. Restart or reload the agent if its documentation requires it. If installation fails, first run `npx skills add --help`, confirm the repository URL and skill name, and verify your agent's documented skills directory and format.
 
-| Skill              | Purpose                                                  |
-| ------------------ | -------------------------------------------------------- |
-| `fullstack-core`   | Repository inspection, planning, and delivery discipline |
-| `react-typescript` | React and TypeScript development                         |
-| `node-api`         | Node.js and REST API development                         |
-| `database-prisma`  | Database and Prisma workflows                            |
-| `testing-quality`  | Unit, integration, and browser testing                   |
-| `security-review`  | Application security review                              |
-| `docker-devops`    | Containerization and delivery workflows                  |
+The CLI copies and runs skill instructions with the agent's permissions. Review the skills before using them.
 
-These are starter skills. Their presence does not imply exhaustive coverage or independent production validation.
+## Contribute and validate
 
-## Repository Structure
+To add or change a skill, use `skills/<lowercase-kebab-case-name>/SKILL.md`, include clear `name` and `description` frontmatter, and write actionable guidance. Review [CONTRIBUTING.md](CONTRIBUTING.md) for requirements, especially third-party licensing and attribution.
 
-```text
-fullstack-skills/
-├── skills/
-│   ├── fullstack-core/SKILL.md
-│   ├── react-typescript/SKILL.md
-│   ├── node-api/SKILL.md
-│   ├── database-prisma/SKILL.md
-│   ├── testing-quality/SKILL.md
-│   ├── security-review/SKILL.md
-│   └── docker-devops/SKILL.md
-├── docs/
-│   ├── THIRD_PARTY_SKILLS.md
-│   └── RELEASE_CHECKLIST.md
-├── scripts/
-│   └── validate-skills.sh
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── LICENSE
-└── README.md
-```
-
-## How Skills Work
-
-Skills are focused instruction sets that an AI coding agent can load when relevant.
-
-A skill may provide:
-
-- Task-specific workflows and checklists.
-- Development conventions and implementation guidance.
-- Testing and code-review procedures.
-- References to supporting documentation and examples.
-
-A skill does not automatically install programming languages, packages, databases, browsers, MCP servers, or other external dependencies.
-
-## Contributing
-
-Contributions are welcome.
-
-When adding or modifying a skill:
-
-1. Follow the repository's skill structure and naming conventions.
-2. Write clear metadata and explain when the skill should be used.
-3. Include actionable instructions rather than vague advice.
-4. Avoid duplicating existing skills.
-5. Validate technical recommendations and example commands.
-6. Add tests or validation rules when appropriate.
-7. Document third-party sources and preserve applicable license notices.
-8. Run the validation script before submitting a pull request.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
-## Adding Third-Party Skills Safely
-
-Before redistributing third-party skill content:
-
-1. Identify the original repository and exact skill path.
-2. Read the relevant source and repository licenses.
-3. Check permissions for redistribution, modification, and sublicensing.
-4. Preserve required copyright, license, and attribution notices.
-5. Record the source URL, author, license, retrieval date, and local modifications in `docs/THIRD_PARTY_SKILLS.md`.
-6. Do not assume the repository's MIT license overrides third-party licensing terms.
-7. Review the skill for technical correctness, security, and quality.
-
-If redistribution is not permitted or the terms are unclear, link to the original source instead of copying its content.
-
-## Quality and Security Principles
-
-- Prefer small, task-specific skills.
-- Keep instructions consistent and avoid unnecessary duplication.
-- Never include credentials, tokens, private data, or machine-specific paths.
-- Treat external content and generated instructions as untrusted until reviewed.
-- Do not claim that a command or workflow has been tested unless it has actually been run.
-- Test installation and updates in a disposable environment before releases.
-- Keep third-party provenance and licensing information accurate.
-
-Report security concerns according to [SECURITY.md](SECURITY.md).
-
-## Validate Locally
-
-Run the repository's basic validation script:
+The validator requires Python 3 and PyYAML. From the repository root:
 
 ```bash
+python3 -m pip install PyYAML==6.0.2
 bash scripts/validate-skills.sh
+python3 -m unittest discover -s tests -v
 ```
 
-This checks basic structure. It does not establish technical correctness, security, licensing compliance, or compatibility with every agent.
+The validator checks selected frontmatter and file-structure constraints; passing does not establish technical correctness, security, licensing compliance, or agent compatibility.
 
-## Roadmap
+## License and security
 
-Planned areas for future development include:
+Original repository content is offered under the [MIT License](LICENSE). Third-party material remains subject to its own terms and notices; see [`docs/THIRD_PARTY_SKILLS.md`](docs/THIRD_PARTY_SKILLS.md).
 
-- NestJS and Fastify development.
-- REST API design and validation.
-- Git workflows and code review.
-- CI/CD and deployment automation.
-- System design and architecture.
-- More comprehensive skill validation and automated testing.
-
-These are planned additions, not claims about skills currently included.
-
-## License
-
-Original content in this repository is offered under the MIT License; see [LICENSE](LICENSE).
-
-Third-party content remains subject to its applicable licenses and notices.
+For security concerns, follow [SECURITY.md](SECURITY.md) and use the repository's [private vulnerability reporting](https://github.com/sudeeppatgar/fullstack-skills/security/advisories/new) feature. Do not disclose sensitive details in a public issue.
