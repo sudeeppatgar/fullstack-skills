@@ -7,7 +7,7 @@ description: Use to orient in a repository, plan and coordinate cross-layer chan
 
 ## Scope
 
-Own cross-layer orchestration: understand the repository, map a request to affected components, coordinate focused skills, integrate changes, and report verification. Delegate detailed domain decisions rather than repeating every specialty checklist. For architecture trade-offs use [system-design](../system-design/SKILL.md); for API contracts use [rest-api-design](../rest-api-design/SKILL.md), and for implementation use the relevant [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), [database-prisma](../database-prisma/SKILL.md), or [react-typescript](../react-typescript/SKILL.md) guidance.
+Own cross-layer orchestration: understand the repository, map a request to affected components, coordinate focused skills, integrate changes, and report verification. Delegate detailed domain decisions rather than repeating every specialty checklist. For architecture trade-offs use [system-design](../system-design/SKILL.md); for API contracts use [rest-api-design](../rest-api-design/SKILL.md); for test strategy and dedicated security assessment use [testing-quality](../testing-quality/SKILL.md) and [security-review](../security-review/SKILL.md); for implementation use the relevant [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), [database-prisma](../database-prisma/SKILL.md), or [react-typescript](../react-typescript/SKILL.md) guidance.
 
 ## Workflow
 

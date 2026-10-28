@@ -7,7 +7,7 @@ description: Use when building, troubleshooting, securing, or deploying containe
 
 ## Scope and handoffs
 
-Own image construction, local/container runtime configuration, container operations, persistent storage, and deployment checks. For pipeline triggers, permissions, and job design, hand off to [ci-cd](../ci-cd/SKILL.md). For application implementation, security review, or architecture decisions, use the relevant [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), [security-review](../security-review/SKILL.md), or [system-design](../system-design/SKILL.md) skill. Do not assume Docker, Compose, a cloud provider, or an orchestrator is used until repository evidence confirms it.
+Own image construction, local/container runtime configuration, container operations, persistent storage, and deployment checks. For pipeline triggers, permissions, and job design, hand off to [ci-cd](../ci-cd/SKILL.md). For schema or migration changes that affect container rollout/rollback, coordinate with [database-prisma](../database-prisma/SKILL.md). For application implementation, security review, or architecture decisions, use the relevant [node-api](../node-api/SKILL.md), [nestjs-development](../nestjs-development/SKILL.md), [security-review](../security-review/SKILL.md), or [system-design](../system-design/SKILL.md) skill. Do not assume Docker, Compose, a cloud provider, or an orchestrator is used until repository evidence confirms it.
 
 ## Inspect before changing
 
@@ -24,10 +24,12 @@ Own image construction, local/container runtime configuration, container operati
 5. Build and inspect using commands supported by the repository's Docker CLI/Compose version. For example, with the Compose plugin:
 
    ```bash
-   docker compose config             # Render/validate the merged Compose configuration.
-   docker compose build <service>    # Build one named service for focused diagnosis.
-   docker image ls                   # Confirm the resulting image/tag exists.
-   docker image history <image:tag>  # Inspect image layers when size or layering is suspect.
+   SERVICE=app        # Replace with a service from the repository's Compose config.
+   IMAGE_TAG=app:dev  # Replace with the image tag being inspected.
+   docker compose config
+   docker compose build "$SERVICE"       # Build one service for focused diagnosis.
+   docker image ls "$IMAGE_TAG"           # Confirm the intended image/tag exists.
+   docker image history "$IMAGE_TAG"      # Inspect layers when size/layering is suspect.
    ```
 
    Check output before sharing it; rendered configuration and build history may expose sensitive values or file paths. If Compose is not installed or the repository uses a different wrapper, use its documented commands instead.
@@ -45,10 +47,11 @@ Own image construction, local/container runtime configuration, container operati
 Start with read-only inspection and the earliest failing stage; do not prune or delete resources to “clean up” before understanding their contents.
 
 ```bash
-docker compose ps                         # State and health for project services.
-docker compose logs --tail=100 <service>  # Recent logs for one service.
-docker compose config                     # Effective configuration; inspect before sharing.
-docker compose exec <service> sh          # Inspect a running container if it contains a shell.
+SERVICE=app # Replace with a service from the repository's Compose config.
+docker compose ps
+docker compose logs --tail=100 "$SERVICE" # Recent logs for one service.
+docker compose config                      # Effective config; inspect before sharing.
+docker compose exec "$SERVICE" sh          # Only if the image contains a shell.
 ```
 
 If the project uses standalone Docker, substitute its documented container/image commands. Common diagnosis path:
