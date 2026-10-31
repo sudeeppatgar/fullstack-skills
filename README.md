@@ -31,7 +31,7 @@ This repository currently contains eighteen skills. They offer practical workflo
 
 Skills use the open Agent Skills folder format: a directory containing `SKILL.md` with `name` and `description` metadata and Markdown instructions. The format is supported by a growing range of products, but format support alone does not verify a particular skill's installation or activation in an agent.
 
-An installation and discovery test installed all eighteen skills into a temporary project for OpenCode and verified that they were listed by `npx skills list --agent opencode`. This verifies installation and CLI discovery for all eighteen skills; individual skill invocation was not tested. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
+These skills are not specific to OpenCode: agents that support the Agent Skills format and discover the installed skill directory can use them. In this repository, an installation and discovery test installed all eighteen skills into a temporary project for OpenCode and verified that they were listed by `npx skills list --agent opencode`. Individual skill invocation was not tested. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
 
 ## Install
 
@@ -62,6 +62,28 @@ npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode --glob
 ```
 
 The command may prompt for confirmation; inspect the target and overwrite summary before approving. Replace `opencode` only with an agent identifier supported by your installed CLI. `--agent '*'` targets every agent recognized by the CLI; it does not guarantee that all such agents can use every skill.
+
+### Install skill packs alongside Full Stack Skills
+
+Install these packs for OpenCode in the current project:
+
+```bash
+npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode --yes
+npx skills add emilkowalski/skills --agent opencode --yes
+npx skills add Leonxlnx/taste-skill --agent opencode --yes
+npx skills add pbakaus/impeccable --agent opencode --yes
+```
+
+The Emil Kowalski command installs the pack's skills, not just one selected skill. These external packs are installed from their original repositories and are not copied into this repository.
+
+To install these packs globally for your user instead, add `--global` to each command:
+
+```bash
+npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode --global --yes
+npx skills add emilkowalski/skills --agent opencode --global --yes
+npx skills add Leonxlnx/taste-skill --agent opencode --global --yes
+npx skills add pbakaus/impeccable --agent opencode --global --yes
+```
 
 ### Verify and manage
 
