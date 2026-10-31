@@ -2,7 +2,7 @@
 
 Reusable [Agent Skills](https://agentskills.io/) for AI coding agents working on full-stack software projects. Each skill is a focused `SKILL.md` with task-specific guidance that an agent can load when relevant; it does not install tools, dependencies, or services.
 
-This repository currently contains thirteen starter skills. They offer practical workflow guidance, not exhaustive coverage or a guarantee that generated changes are correct. Review skill instructions and agent output as you would other code.
+This repository currently contains eighteen skills. They offer practical workflow guidance, not exhaustive coverage or a guarantee that generated changes are correct. Review skill instructions and agent output as you would other code.
 
 ## Skills
 
@@ -21,12 +21,17 @@ This repository currently contains thirteen starter skills. They offer practical
 | [`nestjs-development`](skills/nestjs-development/SKILL.md) | NestJS-specific modules, dependency injection, request lifecycle, and testing. |
 | [`rest-api-design`](skills/rest-api-design/SKILL.md) | REST resources, HTTP contracts, errors, pagination, and API compatibility. |
 | [`system-design`](skills/system-design/SKILL.md) | System architecture, data flows, scalability, reliability, and design tradeoffs. |
+| [`debugging-root-cause`](skills/debugging-root-cause/SKILL.md) | Evidence-led diagnosis, fault isolation, hypothesis testing, and root-cause analysis. |
+| [`integrations-async-jobs`](skills/integrations-async-jobs/SKILL.md) | External services, webhooks, retries, queues, scheduled tasks, and background jobs. |
+| [`performance-observability`](skills/performance-observability/SKILL.md) | Measured performance diagnosis, profiling, instrumentation, and regression checks. |
+| [`cloud-production-ops`](skills/cloud-production-ops/SKILL.md) | Safe production releases, incident response, rollback, and recovery. |
+| [`documentation-handoffs`](skills/documentation-handoffs/SKILL.md) | Durable project documentation, operational procedures, and implementation handoffs. |
 
 ## Compatibility
 
 Skills use the open Agent Skills folder format: a directory containing `SKILL.md` with `name` and `description` metadata and Markdown instructions. The format is supported by a growing range of products, but format support alone does not verify a particular skill's installation or activation in an agent.
 
-The installation test in this repository verified all seven skills that existed at the time copied into an isolated project's OpenCode directory (`.agents/skills/`). The six subsequently added skills have passed repository metadata validation, but have not been independently tested for agent activation. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
+The installation and discovery test in this repository verified the thirteen skills that existed before the five newest skills were added, copied into an isolated project's OpenCode directory (`.agents/skills/`). The five newest skills have passed repository validation, but have not been independently tested for agent activation. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
 
 ## Install
 
@@ -38,7 +43,7 @@ Preview the repository's available skills without installing:
 npx skills add sudeeppatgar/fullstack-skills --list
 ```
 
-Install all thirteen skills for OpenCode in the current project:
+Install all eighteen skills for OpenCode in the current project:
 
 ```bash
 npx skills add sudeeppatgar/fullstack-skills --skill '*' --agent opencode
