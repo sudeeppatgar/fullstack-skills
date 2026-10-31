@@ -31,7 +31,7 @@ This repository currently contains eighteen skills. They offer practical workflo
 
 Skills use the open Agent Skills folder format: a directory containing `SKILL.md` with `name` and `description` metadata and Markdown instructions. The format is supported by a growing range of products, but format support alone does not verify a particular skill's installation or activation in an agent.
 
-The installation and discovery test in this repository verified the thirteen skills that existed before the five newest skills were added, copied into an isolated project's OpenCode directory (`.agents/skills/`). The five newest skills have passed repository validation, but have not been independently tested for agent activation. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
+An installation and discovery test installed all eighteen skills into a temporary project for OpenCode and verified that they were listed by `npx skills list --agent opencode`. This verifies installation and CLI discovery for all eighteen skills; individual skill invocation was not tested. Compatibility with Claude Code, Codex, Cursor, and other agents has not been tested for this repository. The `skills` CLI supports agent-specific targets; consult its current help and your agent's own documentation for supported target identifiers and any additional setup. Some agents may require an adapter or manual placement.
 
 ## Install
 
